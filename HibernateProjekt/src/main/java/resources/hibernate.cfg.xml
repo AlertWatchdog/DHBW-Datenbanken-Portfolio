@@ -6,13 +6,23 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<!-- Muss mit Datenbank verbunden werden, sobald diese existiert -->
+		
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/test?serverTimezone=CET</property>
-		<property name="connection.username">xxx</property>
-		<property name="connection.password">yyy</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		
-		<mapping class="firma.Mitarbeiter" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Abteilung.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Adresse.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Bueroausstattung.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Hersteller.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Land.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Mitarbeiter.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/MitarbeiterEquipment.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Raum.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Standort.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Status.java" />
+		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Typ.java" />
 	</session-factory>
 </hibernate-configuration>
