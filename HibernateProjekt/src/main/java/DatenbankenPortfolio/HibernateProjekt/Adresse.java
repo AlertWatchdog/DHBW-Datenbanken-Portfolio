@@ -49,4 +49,9 @@ public class Adresse {
 		this.hausnummer = hausnummer;
 	}
 	
+	//Fremdschlüssel
+			@ManyToOne
+			@JoinColumn(name = "LandID")
+			private Land land;
+			
 }

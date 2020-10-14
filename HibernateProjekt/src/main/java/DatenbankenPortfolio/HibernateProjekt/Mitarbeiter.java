@@ -51,5 +51,16 @@ public class Mitarbeiter {
 		this.geburtsdatum = geburtsdatum;
 	}
 	
+	//Fremdschlüssel
+	@ManyToOne
+	@JoinColumn(name = "AbteilungsID")
+	private Abteilung abteilung;
 	
+	@ManyToOne
+	@JoinColumn(name = "StandortID")
+	private Standort standort;
+	
+	@ManyToOne
+	@JoinColumn(name = "AdressID")
+	private Adresse adresse;
 }

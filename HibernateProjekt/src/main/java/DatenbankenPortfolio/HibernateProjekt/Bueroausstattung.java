@@ -35,4 +35,16 @@ public class Bueroausstattung {
 		this.anschaffungsdatum = anschaffungsdatum;
 	}
 	
+	//Fremdschlüssel
+			@ManyToOne
+			@JoinColumn(name = "RaumID")
+			private Raum raum;
+			
+			@ManyToOne
+			@JoinColumn(name = "TypID")
+			private Typ typ;
+			
+			@ManyToOne
+			@JoinColumn(name = "HerstellerID")
+			private Hersteller Hersteller;
 }

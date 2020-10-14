@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name= "mitarbeiter-equipment")
 public class MitarbeiterEquipment {
 	@Id
-	@Column(name="Seriennummer") //Auto Generiert?
+	@Column(name="Seriennummer") 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name="Bezeichnung")
@@ -35,4 +35,17 @@ public class MitarbeiterEquipment {
 	public void setAnschaffungsdatum(Date anschaffungsdatum) {
 		this.anschaffungsdatum = anschaffungsdatum;
 	}
+	
+	//Fremdschlüssel
+		@ManyToOne
+		@JoinColumn(name = "MitarbeiterID")
+		private Mitarbeiter mitarbeiter;
+		
+		@ManyToOne
+		@JoinColumn(name = "TypID")
+		private Typ typ;
+		
+		@ManyToOne
+		@JoinColumn(name = "HerstellerID")
+		private Hersteller Hersteller;
 }

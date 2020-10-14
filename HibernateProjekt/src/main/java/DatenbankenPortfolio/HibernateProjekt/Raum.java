@@ -41,5 +41,8 @@ public class Raum {
 		this.stockwerk = stockwerk;
 	}
 	
-	
+	//Fremdschlüssel
+		@ManyToOne
+		@JoinColumn(name = "StandortID")
+		private Standort standort;
 }

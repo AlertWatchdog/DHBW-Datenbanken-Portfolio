@@ -16,4 +16,9 @@ public class Standort {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	//Fremdschlüssel
+		@ManyToOne
+		@JoinColumn(name = "AdressID")
+		private Adresse adresse;
 }
