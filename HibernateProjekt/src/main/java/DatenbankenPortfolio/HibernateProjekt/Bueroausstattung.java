@@ -40,11 +40,32 @@ public class Bueroausstattung {
 			@JoinColumn(name = "RaumID")
 			private Raum raum;
 			
+			public Raum getRaum() {
+				return raum;
+			}
+			public void setRaum(Raum raum) {
+				this.raum = raum;
+			}
+
 			@ManyToOne
 			@JoinColumn(name = "TypID")
 			private Typ typ;
 			
+			public Typ getTyp() {
+				return typ;
+			}
+			public void setTyp(Typ typ) {
+				this.typ = typ;
+			}
+			
 			@ManyToOne
 			@JoinColumn(name = "HerstellerID")
 			private Hersteller Hersteller;
+
+			public Hersteller getHersteller() {
+				return Hersteller;
+			}
+			public void setHersteller(Hersteller hersteller) {
+				Hersteller = hersteller;
+			}
 }

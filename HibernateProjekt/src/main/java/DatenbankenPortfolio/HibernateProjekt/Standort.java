@@ -21,4 +21,11 @@ public class Standort {
 		@ManyToOne
 		@JoinColumn(name = "AdressID")
 		private Adresse adresse;
+
+		public Adresse getAdresse() {
+			return adresse;
+		}
+		public void setAdresse(Adresse adresse) {
+			this.adresse = adresse;
+		}
 }

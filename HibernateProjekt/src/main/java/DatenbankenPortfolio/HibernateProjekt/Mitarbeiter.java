@@ -56,11 +56,31 @@ public class Mitarbeiter {
 	@JoinColumn(name = "AbteilungsID")
 	private Abteilung abteilung;
 	
+	public Abteilung getAbteilung() {
+		return abteilung;
+	}
+	public void setAbteilung(Abteilung abteilung) {
+		this.abteilung = abteilung;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "StandortID")
 	private Standort standort;
 	
+	public Standort getStandort() {
+		return standort;
+	}
+	public void setStandort(Standort standort) {
+		this.standort = standort;
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "AdressID")
 	private Adresse adresse;
+	public Adresse getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
 }

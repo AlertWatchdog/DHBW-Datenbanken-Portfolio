@@ -45,4 +45,11 @@ public class Raum {
 		@ManyToOne
 		@JoinColumn(name = "StandortID")
 		private Standort standort;
+
+		public Standort getStandort() {
+			return standort;
+		}
+		public void setStandort(Standort standort) {
+			this.standort = standort;
+		}
 }

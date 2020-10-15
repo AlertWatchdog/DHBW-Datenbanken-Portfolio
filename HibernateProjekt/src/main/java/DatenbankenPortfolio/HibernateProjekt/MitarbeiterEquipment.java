@@ -41,11 +41,32 @@ public class MitarbeiterEquipment {
 		@JoinColumn(name = "MitarbeiterID")
 		private Mitarbeiter mitarbeiter;
 		
+		public Mitarbeiter getMitarbeiter() {
+			return mitarbeiter;
+		}
+		public void setMitarbeiter(Mitarbeiter mitarbeiter) {
+			this.mitarbeiter = mitarbeiter;
+		}
+
 		@ManyToOne
 		@JoinColumn(name = "TypID")
 		private Typ typ;
 		
+		public Typ getTyp() {
+			return typ;
+		}
+		public void setTyp(Typ typ) {
+			this.typ = typ;
+		}
+		
 		@ManyToOne
 		@JoinColumn(name = "HerstellerID")
 		private Hersteller Hersteller;
+		
+		public Hersteller getHersteller() {
+			return Hersteller;
+		}
+		public void setHersteller(Hersteller hersteller) {
+			Hersteller = hersteller;
+		}
 }

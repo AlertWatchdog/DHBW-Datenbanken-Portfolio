@@ -53,5 +53,12 @@ public class Adresse {
 			@ManyToOne
 			@JoinColumn(name = "LandID")
 			private Land land;
+
+			public Land getLand() {
+				return land;
+			}
+			public void setLand(Land land) {
+				this.land = land;
+			}
 			
 }
