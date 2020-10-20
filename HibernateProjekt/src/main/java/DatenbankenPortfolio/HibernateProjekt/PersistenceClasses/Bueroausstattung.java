@@ -1,4 +1,4 @@
-package DatenbankenPortfolio.HibernateProjekt;
+package DatenbankenPortfolio.HibernateProjekt.PersistenceClasses;
 
 import java.sql.Date;
 
