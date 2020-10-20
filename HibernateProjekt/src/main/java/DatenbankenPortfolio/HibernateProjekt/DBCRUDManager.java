@@ -28,7 +28,7 @@ public class DBCRUDManager {
 
 	// Create Methods
 	// create Mitarbeiter
-	public void createMitarbeiter(Date geburtsdatum, char geschlecht, String nachname, String vorname, int abteilungsID,
+	protected void createMitarbeiter(Date geburtsdatum, char geschlecht, String nachname, String vorname, int abteilungsID,
 			int standortID, int adressID) {
 		Mitarbeiter tmp = new Mitarbeiter();
 
@@ -52,7 +52,7 @@ public class DBCRUDManager {
 	}
 
 	// create Bueroausstattung
-	public void createBueroausstattung(Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
+	protected void createBueroausstattung(Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
 			int typID) {
 		Bueroausstattung tmp = new Bueroausstattung();
 
@@ -74,7 +74,7 @@ public class DBCRUDManager {
 	}
 
 	// create Standort
-	public void createStandort(int adressID) {
+	protected void createStandort(int adressID) {
 		Standort tmp = new Standort();
 
 		tmp.setAdresse(readAdresse(adressID));
@@ -91,7 +91,7 @@ public class DBCRUDManager {
 	}
 
 	// create MitarbeiterEquipment
-	public void createMitarbeiterEquipment(Date anschaffungsdatum, String bezeichnung, int herstellerID,
+	protected void createMitarbeiterEquipment(Date anschaffungsdatum, String bezeichnung, int herstellerID,
 			int mitarbeiterID, int typID) {
 		MitarbeiterEquipment tmp = new MitarbeiterEquipment();
 
@@ -113,7 +113,7 @@ public class DBCRUDManager {
 	}
 
 	// create Raum
-	public void createRaum(String bezeichnung, int standortID, String stockwerk, int arbeitsplaetze) {
+	protected void createRaum(String bezeichnung, int standortID, String stockwerk, int arbeitsplaetze) {
 		Raum tmp = new Raum();
 
 		tmp.setBezeichnung(bezeichnung);
@@ -133,7 +133,7 @@ public class DBCRUDManager {
 	}
 
 	// create Adresse
-	public void createAdresse(String straße, int hausnummer, String stadt, int plz, String landID) {
+	protected void createAdresse(String straße, int hausnummer, String stadt, int plz, String landID) {
 		Adresse tmp = new Adresse();
 
 		tmp.setHausnummer(hausnummer);
@@ -154,7 +154,7 @@ public class DBCRUDManager {
 	}
 
 	// create Abteilung
-	public void createAbteilung(String abteilung) {
+	protected void createAbteilung(String abteilung) {
 		Abteilung tmp = new Abteilung();
 
 		tmp.setAbteilung(abteilung);
@@ -171,7 +171,7 @@ public class DBCRUDManager {
 	}
 
 	// create Land
-	public void createLand(String land, String landID) {
+	protected void createLand(String land, String landID) {
 		Land tmp = new Land();
 
 		tmp.setLand(land);
@@ -189,7 +189,7 @@ public class DBCRUDManager {
 	}
 
 	// create Status
-	public void createStatus(String status) {
+	protected void createStatus(String status) {
 		Status tmp = new Status();
 
 		tmp.setStatus(status);
@@ -206,7 +206,7 @@ public class DBCRUDManager {
 	}
 
 	// create Hersteller
-	public void createHersteller(String hersteller) {
+	protected void createHersteller(String hersteller) {
 		Hersteller tmp = new Hersteller();
 
 		tmp.setHersteller(hersteller);
@@ -223,7 +223,7 @@ public class DBCRUDManager {
 	}
 
 	// create Typ
-	public void createTp(String typ) {
+	protected void createTyp(String typ) {
 		Typ tmp = new Typ();
 
 		tmp.setTyp(typ);
@@ -243,14 +243,14 @@ public class DBCRUDManager {
 	// read Methods start here
 	// read Mitarbeiter
 
-	public Mitarbeiter readMitarbeiter(int id) {
+	protected Mitarbeiter readMitarbeiter(int id) {
 		Transaction t = session.beginTransaction();
 		Mitarbeiter tmp = session.get(Mitarbeiter.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Mitarbeiter> readAllMitarbeiter() {
+	protected List<Mitarbeiter> readAllMitarbeiter() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Mitarbeiter> tmp = session.createQuery("from mitarbeiter").list();
@@ -260,14 +260,14 @@ public class DBCRUDManager {
 
 	// read Abteilung
 
-	public Abteilung readAbteilung(int id) {
+	protected Abteilung readAbteilung(int id) {
 		Transaction t = session.beginTransaction();
 		Abteilung tmp = session.get(Abteilung.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Abteilung> readAllAbteilung() {
+	protected List<Abteilung> readAllAbteilung() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Abteilung> tmp = session.createQuery("from abteilung").list();
@@ -277,14 +277,14 @@ public class DBCRUDManager {
 
 	// read Adresse
 
-	public Adresse readAdresse(int id) {
+	protected Adresse readAdresse(int id) {
 		Transaction t = session.beginTransaction();
 		Adresse tmp = session.get(Adresse.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Adresse> readAllAdresse() {
+	protected List<Adresse> readAllAdresse() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Adresse> tmp = session.createQuery("from adresse").list();
@@ -294,14 +294,14 @@ public class DBCRUDManager {
 
 	// read Bueroausstattung
 
-	public Bueroausstattung readBueroausstattung(int id) {
+	protected Bueroausstattung readBueroausstattung(int id) {
 		Transaction t = session.beginTransaction();
 		Bueroausstattung tmp = session.get(Bueroausstattung.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Bueroausstattung> readAllBueroausstattung() {
+	protected List<Bueroausstattung> readAllBueroausstattung() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Bueroausstattung> tmp = session.createQuery("from büroausstattung").list();
@@ -311,14 +311,14 @@ public class DBCRUDManager {
 
 	// read Hersteller
 
-	public Hersteller readHersteller(int id) {
+	protected Hersteller readHersteller(int id) {
 		Transaction t = session.beginTransaction();
 		Hersteller tmp = session.get(Hersteller.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Hersteller> readAllHersteller() {
+	protected List<Hersteller> readAllHersteller() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Hersteller> tmp = session.createQuery("from hersteller").list();
@@ -328,14 +328,14 @@ public class DBCRUDManager {
 
 	// read Land
 
-	public Land readLand(String id) {
+	protected Land readLand(String id) {
 		Transaction t = session.beginTransaction();
 		Land tmp = session.get(Land.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Land> readAllLand() {
+	protected List<Land> readAllLand() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Land> tmp = session.createQuery("from land").list();
@@ -345,14 +345,14 @@ public class DBCRUDManager {
 
 	// read Mitarbeiter Equipment
 
-	public MitarbeiterEquipment readMitarbeiterEquipment(int id) {
+	protected MitarbeiterEquipment readMitarbeiterEquipment(int id) {
 		Transaction t = session.beginTransaction();
 		MitarbeiterEquipment tmp = session.get(MitarbeiterEquipment.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<MitarbeiterEquipment> readAllMitarbeiterEquipment() {
+	protected List<MitarbeiterEquipment> readAllMitarbeiterEquipment() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<MitarbeiterEquipment> tmp = session.createQuery("from mitarbeiter-equipment").list();
@@ -362,14 +362,14 @@ public class DBCRUDManager {
 
 	// read Raum
 
-	public Raum readRaum(int id) {
+	protected Raum readRaum(int id) {
 		Transaction t = session.beginTransaction();
 		Raum tmp = session.get(Raum.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Raum> readAllRaum() {
+	protected List<Raum> readAllRaum() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Raum> tmp = session.createQuery("from raum").list();
@@ -379,14 +379,14 @@ public class DBCRUDManager {
 
 	// read Standort
 
-	public Standort readStandort(int id) {
+	protected Standort readStandort(int id) {
 		Transaction t = session.beginTransaction();
 		Standort tmp = session.get(Standort.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Standort> readAllStandort() {
+	protected List<Standort> readAllStandort() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Standort> tmp = session.createQuery("from standort").list();
@@ -396,14 +396,14 @@ public class DBCRUDManager {
 
 	// read Status
 
-	public Status readStatus(int id) {
+	protected Status readStatus(int id) {
 		Transaction t = session.beginTransaction();
 		Status tmp = session.get(Status.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Status> readAllStatus() {
+	protected List<Status> readAllStatus() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Status> tmp = session.createQuery("from status").list();
@@ -413,14 +413,14 @@ public class DBCRUDManager {
 
 	// read Typ
 
-	public Typ readTyp(int id) {
+	protected Typ readTyp(int id) {
 		Transaction t = session.beginTransaction();
 		Typ tmp = session.get(Typ.class, id);
 		t.commit();
 		return tmp;
 	}
 
-	public List<Typ> readAllTyp() {
+	protected List<Typ> readAllTyp() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
 		List<Typ> tmp = session.createQuery("from typ").list();
@@ -436,7 +436,7 @@ public class DBCRUDManager {
 	
 	// Delete Methods
 	// Delete Mitarbeiter
-	public void deleteMitarbeiter(int id) {
+	protected void deleteMitarbeiter(int id) {
 		Mitarbeiter tmp = new Mitarbeiter();
 		tmp.setId(id);
 
@@ -452,7 +452,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Abteilung
-	public void deleteAbteilung(int id) {
+	protected void deleteAbteilung(int id) {
 		Abteilung tmp = new Abteilung();
 		tmp.setId(id);
 
@@ -468,7 +468,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Adresse
-	public void deleteAdresse(int id) {
+	protected void deleteAdresse(int id) {
 		Adresse tmp = new Adresse();
 		tmp.setId(id);
 
@@ -484,7 +484,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Bueroausstattung
-	public void deleteBueroausstattung(int id) {
+	protected void deleteBueroausstattung(int id) {
 		Bueroausstattung tmp = new Bueroausstattung();
 		tmp.setId(id);
 
@@ -500,7 +500,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Hersteller
-	public void deleteHersteller(int id) {
+	protected void deleteHersteller(int id) {
 		Hersteller tmp = new Hersteller();
 		tmp.setId(id);
 
@@ -516,7 +516,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Land
-	public void deleteLand(String id) {
+	protected void deleteLand(String id) {
 		Land tmp = new Land();
 		tmp.setId(id);
 
@@ -532,7 +532,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete MitarbeiterEquipment
-	public void deleteMitarbeiterEquipment(int id) {
+	protected void deleteMitarbeiterEquipment(int id) {
 		MitarbeiterEquipment tmp = new MitarbeiterEquipment();
 		tmp.setId(id);
 
@@ -548,7 +548,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Raum
-	public void deleteRaum(int id) {
+	protected void deleteRaum(int id) {
 		Raum tmp = new Raum();
 		tmp.setId(id);
 
@@ -564,7 +564,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Standort
-	public void deleteStandort(int id) {
+	protected void deleteStandort(int id) {
 		Standort tmp = new Standort();
 		tmp.setId(id);
 
@@ -580,7 +580,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Status
-	public void deleteStatus(int id) {
+	protected void deleteStatus(int id) {
 		Status tmp = new Status();
 		tmp.setId(id);
 
@@ -596,7 +596,7 @@ public class DBCRUDManager {
 	}
 
 	// Delete Typ
-	public void deleteTyp(int id) {
+	protected void deleteTyp(int id) {
 		Typ tmp = new Typ();
 		tmp.setId(id);
 
