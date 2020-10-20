@@ -9,7 +9,10 @@ public class Land {
 	@Id
 	@Column(name="LandID")
 	private String id;
+	
+	@Column(name="Land")
 	private String land;
+	
 	public String getId() {
 		return id;
 	}

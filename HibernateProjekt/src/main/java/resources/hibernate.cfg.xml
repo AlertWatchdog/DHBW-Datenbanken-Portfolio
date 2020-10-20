@@ -8,21 +8,21 @@
 	<session-factory>
 		
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/test?serverTimezone=CET</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/portfolio?serverTimezone=CET</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password"></property>
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Abteilung.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Adresse.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Bueroausstattung.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Hersteller.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Land.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Mitarbeiter.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/MitarbeiterEquipment.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Raum.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Standort.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Status.java" />
-		<mapping class="/HibernateProjekt/src/main/java/DatenbankenPortfolio/HibernateProjekt/Typ.java" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Abteilung" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Adresse" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Bueroausstattung" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Hersteller" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Land" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Mitarbeiter" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.MitarbeiterEquipment" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Raum" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Standort" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Status" />
+		<mapping class="DatenbankenPortfolio.HibernateProjekt.PersistenceClasses.Typ" />
 	</session-factory>
 </hibernate-configuration>

@@ -270,7 +270,7 @@ public class DBCRUDManager {
 	protected List<Abteilung> readAllAbteilung() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Abteilung> tmp = session.createQuery("from abteilung").list();
+		List<Abteilung> tmp = session.createQuery("from Abteilung").list();
 		t.commit();
 		return tmp;
 	}
@@ -287,7 +287,7 @@ public class DBCRUDManager {
 	protected List<Adresse> readAllAdresse() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Adresse> tmp = session.createQuery("from adresse").list();
+		List<Adresse> tmp = session.createQuery("from Adresse").list();
 		t.commit();
 		return tmp;
 	}
@@ -304,7 +304,7 @@ public class DBCRUDManager {
 	protected List<Bueroausstattung> readAllBueroausstattung() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Bueroausstattung> tmp = session.createQuery("from büroausstattung").list();
+		List<Bueroausstattung> tmp = session.createQuery("from Bueroausstattung").list();
 		t.commit();
 		return tmp;
 	}
@@ -321,7 +321,7 @@ public class DBCRUDManager {
 	protected List<Hersteller> readAllHersteller() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Hersteller> tmp = session.createQuery("from hersteller").list();
+		List<Hersteller> tmp = session.createQuery("from Hersteller").list();
 		t.commit();
 		return tmp;
 	}
@@ -338,7 +338,7 @@ public class DBCRUDManager {
 	protected List<Land> readAllLand() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Land> tmp = session.createQuery("from land").list();
+		List<Land> tmp = session.createQuery("from Land").list();
 		t.commit();
 		return tmp;
 	}
@@ -355,7 +355,7 @@ public class DBCRUDManager {
 	protected List<MitarbeiterEquipment> readAllMitarbeiterEquipment() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<MitarbeiterEquipment> tmp = session.createQuery("from mitarbeiter-equipment").list();
+		List<MitarbeiterEquipment> tmp = session.createQuery("from MitarbeiterEquipment").list();
 		t.commit();
 		return tmp;
 	}
@@ -372,7 +372,7 @@ public class DBCRUDManager {
 	protected List<Raum> readAllRaum() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Raum> tmp = session.createQuery("from raum").list();
+		List<Raum> tmp = session.createQuery("from Raum").list();
 		t.commit();
 		return tmp;
 	}
@@ -389,7 +389,7 @@ public class DBCRUDManager {
 	protected List<Standort> readAllStandort() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Standort> tmp = session.createQuery("from standort").list();
+		List<Standort> tmp = session.createQuery("from Standort").list();
 		t.commit();
 		return tmp;
 	}
@@ -406,7 +406,7 @@ public class DBCRUDManager {
 	protected List<Status> readAllStatus() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Status> tmp = session.createQuery("from status").list();
+		List<Status> tmp = session.createQuery("from Status").list();
 		t.commit();
 		return tmp;
 	}
@@ -423,7 +423,7 @@ public class DBCRUDManager {
 	protected List<Typ> readAllTyp() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Typ> tmp = session.createQuery("from typ").list();
+		List<Typ> tmp = session.createQuery("from Typ").list();
 		t.commit();
 		return tmp;
 	}
