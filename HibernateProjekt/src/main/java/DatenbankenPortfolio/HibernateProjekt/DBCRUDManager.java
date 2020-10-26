@@ -431,7 +431,229 @@ public class DBCRUDManager {
 	// End of Read Methods
 	
 	//Update Methods
-	
+		// Update Mitarbeiter
+		protected void updateMitarbeiter(int id, Date geburtsdatum, char geschlecht, String nachname, String vorname, int abteilungsID,
+				int standortID, int adressID) {
+			Mitarbeiter tmp = new Mitarbeiter();
+
+			tmp.setId(id);
+			tmp.setGeburtsdatum(geburtsdatum);
+			tmp.setGeschlecht(geschlecht);
+			tmp.setNachname(nachname);
+			tmp.setVorname(vorname);
+			tmp.setAbteilung(readAbteilung(abteilungsID));
+			tmp.setStandort(readStandort(standortID));
+			tmp.setAdresse(readAdresse(adressID));
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Bueroausstattung
+		protected void updateBueroausstattung(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
+				int typID) {
+			Bueroausstattung tmp = new Bueroausstattung();
+
+			tmp.setId(id);
+			tmp.setAnschaffungsdatum(anschaffungsdatum);
+			tmp.setBezeichnung(bezeichnung);
+			tmp.setHersteller(readHersteller(herstellerID));
+			tmp.setRaum(readRaum(raumID));
+			tmp.setTyp(readTyp(typID));
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Standort
+		protected void updateStandort(int id, int adressID) {
+			Standort tmp = new Standort();
+
+			tmp.setId(id);
+			tmp.setAdresse(readAdresse(adressID));
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update MitarbeiterEquipment
+		protected void updateMitarbeiterEquipment(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID,
+				int mitarbeiterID, int typID) {
+			MitarbeiterEquipment tmp = new MitarbeiterEquipment();
+
+			tmp.setId(id);
+			tmp.setAnschaffungsdatum(anschaffungsdatum);
+			tmp.setBezeichnung(bezeichnung);
+			tmp.setHersteller(readHersteller(herstellerID));
+			tmp.setTyp(readTyp(typID));
+			tmp.setMitarbeiter(readMitarbeiter(mitarbeiterID));
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Raum
+		protected void updateRaum(int id, String bezeichnung, int standortID, String stockwerk, int arbeitsplaetze) {
+			Raum tmp = new Raum();
+
+			tmp.setId(id);
+			tmp.setBezeichnung(bezeichnung);
+			tmp.setAnzahlArbeitsplaetze(arbeitsplaetze);
+			tmp.setStandort(readStandort(standortID));
+			tmp.setStockwerk(stockwerk);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Adresse
+		protected void updateAdresse(int id, String straße, int hausnummer, String stadt, int plz, String landID) {
+			Adresse tmp = new Adresse();
+
+			tmp.setId(id);
+			tmp.setHausnummer(hausnummer);
+			tmp.setLand(readLand(landID));
+			tmp.setPlz(plz);
+			tmp.setStadt(stadt);
+			tmp.setStraße(straße);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Abteilung
+		protected void updateAbteilung(int id, String abteilung) {
+			Abteilung tmp = new Abteilung();
+
+			tmp.setId(id);
+			tmp.setAbteilung(abteilung);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Land
+		protected void updateLand(String id, String land, String landID) {
+			Land tmp = new Land();
+
+			tmp.setId(id);
+			tmp.setLand(land);
+			tmp.setId(landID);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Status
+		protected void updateStatus(int id, String status) {
+			Status tmp = new Status();
+
+			tmp.setId(id);
+			tmp.setStatus(status);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Hersteller
+		protected void updateHersteller(int id, String hersteller) {
+			Hersteller tmp = new Hersteller();
+
+			tmp.setId(id);
+			tmp.setHersteller(hersteller);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+
+		// update Typ
+		protected void updateTyp(int id, String typ) {
+			Typ tmp = new Typ();
+
+			tmp.setId(id);
+			tmp.setTyp(typ);
+
+			Transaction t = session.beginTransaction();
+			try {
+				session.save(tmp);
+				t.commit();
+			} catch (HibernateException e) {
+				if (t != null)
+					t.rollback();
+				e.printStackTrace();
+			}
+		}
+		
 	//End of Update Methods
 	
 	// Delete Methods

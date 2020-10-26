@@ -103,6 +103,68 @@ public class DBManagement {
 	}
 	// End of Create Methods
 
+	// Update Methods
+	// update Mitarbeiter
+	public void updateMitarbeiter(int id, Date geburtsdatum, char geschlecht, String nachname, String vorname,
+			int abteilungsID, int standortID, int adressID) {
+		this.crudManager.updateMitarbeiter(id, geburtsdatum, geschlecht, nachname, vorname, abteilungsID, standortID,
+				adressID);
+	}
+
+	// update Bueroausstattung
+	public void updateBueroausstattung(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
+			int typID) {
+		this.crudManager.updateBueroausstattung(id, anschaffungsdatum, bezeichnung, herstellerID, raumID, typID);
+	}
+
+	// update Standort
+	public void updateStandort(int id, int adressID) {
+		this.crudManager.updateStandort(id, adressID);
+	}
+
+	// update MitarbeiterEquipment
+	public void updateMitarbeiterEquipment(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID,
+			int mitarbeiterID, int typID) {
+		this.crudManager.updateMitarbeiterEquipment(id, anschaffungsdatum, bezeichnung, herstellerID, mitarbeiterID,
+				typID);
+	}
+
+	// update Raum
+	public void updateRaum(int id, String bezeichnung, int standortID, String stockwerk, int arbeitsplaetze) {
+		this.crudManager.updateRaum(id, bezeichnung, standortID, stockwerk, arbeitsplaetze);
+	}
+
+	// update Adresse
+	public void updateAdresse(int id, String straße, int hausnummer, String stadt, int plz, String landID) {
+		this.crudManager.updateAdresse(id, straße, hausnummer, stadt, plz, landID);
+	}
+
+	// update Abteilung
+	public void updateAbteilung(int id, String abteilung) {
+		this.crudManager.updateAbteilung(id, abteilung);
+	}
+
+	// update Land
+	public void updateLand(String id, String land, String landID) {
+		this.crudManager.updateLand(id, land, landID);
+	}
+
+	// update Status
+	public void updateStatus(int id, String status) {
+		this.crudManager.updateStatus(id, status);
+	}
+
+	// update Hersteller
+	public void updateHersteller(int id, String hersteller) {
+		this.crudManager.updateHersteller(id, hersteller);
+	}
+
+	// update Typ
+	public void updateTyp(int id, String typ) {
+		this.crudManager.updateTyp(id, typ);
+	}
+	// End of Update Methods
+
 	// read Methods start here
 	// read Mitarbeiter
 
