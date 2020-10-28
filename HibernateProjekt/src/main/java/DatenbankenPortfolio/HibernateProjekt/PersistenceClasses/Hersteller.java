@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Hersteller {
 	@Id
 	@Column(name="HerstellerID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="Hersteller")
 	private String hersteller;

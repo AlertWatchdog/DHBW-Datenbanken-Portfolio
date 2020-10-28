@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Bueroausstattung {
 	@Id
 	@Column(name="Inventarnummer")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="Bezeichnung")
 	private String bezeichnung;

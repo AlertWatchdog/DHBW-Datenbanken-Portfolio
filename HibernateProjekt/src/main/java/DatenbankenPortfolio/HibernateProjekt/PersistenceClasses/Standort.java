@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Standort {
 	@Id
 	@Column(name="StandortID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	public int getId() {
