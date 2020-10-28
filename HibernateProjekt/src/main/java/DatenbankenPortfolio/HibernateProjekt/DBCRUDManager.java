@@ -253,7 +253,7 @@ public class DBCRUDManager {
 	protected List<Mitarbeiter> readAllMitarbeiter() {
 		Transaction t = session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Mitarbeiter> tmp = session.createQuery("from mitarbeiter").list();
+		List<Mitarbeiter> tmp = session.createQuery("from Mitarbeiter").list();
 		t.commit();
 		return tmp;
 	}
@@ -659,178 +659,57 @@ public class DBCRUDManager {
 	// Delete Methods
 	// Delete Mitarbeiter
 	protected void deleteMitarbeiter(int id) {
-		Mitarbeiter tmp = new Mitarbeiter();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Mitarbeiter.class, id));
 	}
 
 	// Delete Abteilung
 	protected void deleteAbteilung(int id) {
-		Abteilung tmp = new Abteilung();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Abteilung.class, id));
 	}
 
 	// Delete Adresse
 	protected void deleteAdresse(int id) {
-		Adresse tmp = new Adresse();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Adresse.class, id));
 	}
 
 	// Delete Bueroausstattung
 	protected void deleteBueroausstattung(int id) {
-		Bueroausstattung tmp = new Bueroausstattung();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Bueroausstattung.class, id));
 	}
 
 	// Delete Hersteller
 	protected void deleteHersteller(int id) {
-		Hersteller tmp = new Hersteller();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Hersteller.class, id));
 	}
 
 	// Delete Land
 	protected void deleteLand(String id) {
-		Land tmp = new Land();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Land.class, id));
 	}
 
 	// Delete MitarbeiterEquipment
 	protected void deleteMitarbeiterEquipment(int id) {
-		MitarbeiterEquipment tmp = new MitarbeiterEquipment();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(MitarbeiterEquipment.class, id));
 	}
 
 	// Delete Raum
 	protected void deleteRaum(int id) {
-		Raum tmp = new Raum();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Raum.class, id));
 	}
 
 	// Delete Standort
 	protected void deleteStandort(int id) {
-		Standort tmp = new Standort();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Standort.class, id));
 	}
 
 	// Delete Status
 	protected void deleteStatus(int id) {
-		Status tmp = new Status();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Status.class, id));
 	}
 
 	// Delete Typ
 	protected void deleteTyp(int id) {
-		Typ tmp = new Typ();
-		tmp.setId(id);
-
-		Transaction t = session.beginTransaction();
-		try {
-			session.delete(tmp);
-			t.commit();
-		} catch (HibernateException e) {
-			if (t != null)
-				t.rollback();
-			e.printStackTrace();
-		}
+		session.delete(session.get(Typ.class, id));
 	}
 
 }
