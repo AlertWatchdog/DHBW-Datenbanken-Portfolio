@@ -1,3 +1,8 @@
+/**
+ * User Interface for DatenbankenPortfolio.HibernateProject
+ * 
+ * @Version 1.0
+ */
 package ui;
 
 import java.io.BufferedReader;
@@ -24,6 +29,11 @@ public class Ui {
 		startUi(db, reader);
 	}
 
+	/**
+	 * Starts the UI
+	 * @param db		Connected DB
+	 * @param reader	to read Inputs
+	 */
 	private static void startUi(DBManagement db, BufferedReader reader) {
 		System.out.print(
 				"Welcome \nHibernate Projekt for DHBW WWI18B4 Datenbanken \nGroup: Grimm, Jonczyk, Tenten, Widmann, Wolf\n");
@@ -35,11 +45,17 @@ public class Ui {
 		try {
 			ui(db, reader);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("IO failed");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Actual UI. Handles basic Inputs
+	 * @param db			Connected DB
+	 * @param reader		to read Inputs
+	 * @throws IOException	thrown by BufferedReader
+	 */
 	private static void ui(DBManagement db, BufferedReader reader) throws IOException {
 		boolean running = true;
 		while (running) {
@@ -76,6 +92,13 @@ public class Ui {
 		}
 	}
 
+	/**
+	 * Method to create new Instances in DB with user input
+	 * @param db			connected DB
+	 * @param reader		reader for Inputs
+	 * @param type			type of Instance the user wants to create
+	 * @throws IOException	thrown by buffered reader
+	 */
 	private static void create(DBManagement db, BufferedReader reader, String type) throws IOException {
 		System.out.println(
 				"Every variable will be asked for separately. If an entity relies on other objects those need to be created beforehands. Possibilities will be shown.");
@@ -218,6 +241,13 @@ public class Ui {
 
 	}
 
+	/**
+	 * Method to output specific entities from the DB
+	 * @param db			connected DB
+	 * @param reader		reader for Inputs
+	 * @param type			type of Instance the user wants to read
+	 * @throws IOException	thrown by buffered reader
+	 */
 	private static void read(DBManagement db, BufferedReader reader, String type) throws IOException {
 		System.out.println("Enter the ID of the " + type + " you want to read:");
 		String input = reader.readLine();
@@ -412,6 +442,11 @@ public class Ui {
 		}
 	}
 
+	/**
+	 * Method to show all instances of type
+	 * @param db			connected DB
+	 * @param type			type of Instance the user wants to read
+	 */
 	private static void readAll(DBManagement db, String type) {
 		List<String> header = new ArrayList<>();
 		List<String> values = new ArrayList<>();
@@ -621,6 +656,13 @@ public class Ui {
 		}
 	}
 
+	/**
+	 * Method to update instance of type
+	 * @param db			connected DB
+	 * @param reader		bufferedReader for inputs
+	 * @param type			type of instance to update
+	 * @throws IOException	thrown by buffered reader
+	 */
 	private static void update(DBManagement db, BufferedReader reader, String type) throws IOException {
 		System.out.println(
 				"Every variable will be asked for separately. If an entity relies on other objects those need to be created beforehands. Possibilities will be shown.");
@@ -922,6 +964,13 @@ public class Ui {
 		}
 	}
 
+	/**
+	 * Deletes specific instance of type from DB
+	 * @param db			connected DB
+	 * @param reader		bufferedReader for input
+	 * @param type			type of instance to delete
+	 * @throws IOException	thrown by BufferedReader
+	 */
 	private static void delete(DBManagement db, BufferedReader reader, String type) throws IOException {
 		System.out.println("Enter the ID of the " + type + " you want to delete:");
 		String input = reader.readLine();
@@ -971,6 +1020,10 @@ public class Ui {
 
 	}
 
+	/**
+	 * Outputs rows of table to console
+	 * @param values	List of DB rows
+	 */
 	private static void show(List<String> values) {
 		values.forEach((x) -> {
 			System.out.print("| " + x + " |");
@@ -978,6 +1031,11 @@ public class Ui {
 		System.out.println("");
 	}
 
+	/**
+	 * builds a java.sql.Date from String
+	 * @param input	Date String (dd.MM.yyyy)
+	 * @return	java.sql.Date
+	 */
 	private static Date buildDate(String input) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		try {
@@ -989,6 +1047,13 @@ public class Ui {
 		return null;
 	}
 
+	/**
+	 * Checks if the user wants to update a specific column from an element
+	 * @param reader		BufferedReader for Input
+	 * @param column		name of column checked
+	 * @return				true, if the user wants to update column; false if not
+	 * @throws IOException	thrown by BufferedReader
+	 */
 	private static boolean updateColumn(BufferedReader reader, String column) throws IOException {
 		System.out.println("Do you want to change " + column + "? (y/n)");
 		char input = reader.readLine().charAt(0);

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"DatenbankenPortfolio.HibernateProjekt.PersistenceClasses"},{"l":"ui"}]
