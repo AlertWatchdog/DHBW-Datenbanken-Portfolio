@@ -36,7 +36,6 @@ public class DBManagement {
 	private SessionFactory factory;
 	private Session session;
 	private DBCRUDManager crudManager;
-	private ExampleQueryManager exampleManager;
 
 	public DBManagement() {
 		this.ssr = new StandardServiceRegistryBuilder().configure("resources/hibernate.cfg.xml").build();
