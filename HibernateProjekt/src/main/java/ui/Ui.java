@@ -61,10 +61,10 @@ public class Ui {
 		while (running) {
 			String input = reader.readLine();
 			String[] tmp = input.split(" ");
-			if(tmp.length > 1)
-				tmp[1].toLowerCase();
-			else 
-				tmp[0].toLowerCase();
+			if(tmp.length > 1) {
+				tmp[1] = tmp[1].toLowerCase();
+			}
+				tmp[0] = tmp[0].toLowerCase();
 			switch (tmp[0]) {
 			case "exit":
 				running = false;
@@ -76,7 +76,7 @@ public class Ui {
 			case "read":
 				read(db, reader, tmp[1]);
 				break;
-			case "readAll":
+			case "readall":
 				readAll(db, tmp[1]);
 				break;
 			case "update":

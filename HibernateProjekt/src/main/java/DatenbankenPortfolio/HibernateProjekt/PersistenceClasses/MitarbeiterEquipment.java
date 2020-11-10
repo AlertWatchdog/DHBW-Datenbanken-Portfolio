@@ -4,7 +4,7 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity  
-@Table(name= "mitarbeiter-equipment")
+@Table(name= "\"mitarbeiter-equipment\"")
 public class MitarbeiterEquipment {
 	@Id
 	@Column(name="Seriennummer") 

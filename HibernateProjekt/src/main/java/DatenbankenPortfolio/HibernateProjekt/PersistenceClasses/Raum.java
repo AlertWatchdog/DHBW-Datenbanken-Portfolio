@@ -9,7 +9,7 @@ public class Raum {
 	@Column(name="RaumID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="Anzahl Arbeitsplätze")
+	@Column(name="\"Anzahl Arbeitsplätze\"")
 	private int anzahlArbeitsplaetze;
 	@Column(name="Bezeichnung")
 	private String bezeichnung;

@@ -5,7 +5,7 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity  
-@Table(name= "büroausstattung")
+@Table(name= "\"büroausstattung\"")
 public class Bueroausstattung {
 	@Id
 	@Column(name="Inventarnummer")
