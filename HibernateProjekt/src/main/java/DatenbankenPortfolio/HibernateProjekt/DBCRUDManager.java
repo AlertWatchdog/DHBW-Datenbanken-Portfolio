@@ -621,9 +621,8 @@ public class DBCRUDManager {
 	 */
 	protected void updateMitarbeiter(int id, Date geburtsdatum, char geschlecht, String nachname, String vorname,
 			int abteilungsID, int standortID, int adressID) {
-		Mitarbeiter tmp = new Mitarbeiter();
+		Mitarbeiter tmp = readMitarbeiter(id);
 
-		tmp.setId(id);
 		tmp.setGeburtsdatum(geburtsdatum);
 		tmp.setGeschlecht(geschlecht);
 		tmp.setNachname(nachname);
@@ -634,7 +633,7 @@ public class DBCRUDManager {
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -655,9 +654,8 @@ public class DBCRUDManager {
 	 */
 	protected void updateBueroausstattung(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID,
 			int raumID, int typID, int statusID) {
-		Bueroausstattung tmp = new Bueroausstattung();
+		Bueroausstattung tmp = readBueroausstattung(id);
 
-		tmp.setId(id);
 		tmp.setAnschaffungsdatum(anschaffungsdatum);
 		tmp.setBezeichnung(bezeichnung);
 		tmp.setHersteller(readHersteller(herstellerID));
@@ -667,7 +665,7 @@ public class DBCRUDManager {
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -683,14 +681,13 @@ public class DBCRUDManager {
 	 * @param adressID ID of existing Adresse
 	 */
 	protected void updateStandort(int id, int adressID) {
-		Standort tmp = new Standort();
+		Standort tmp = readStandort(id);
 
-		tmp.setId(id);
 		tmp.setAdresse(readAdresse(adressID));
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -711,9 +708,8 @@ public class DBCRUDManager {
 	 */
 	protected void updateMitarbeiterEquipment(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID,
 			int mitarbeiterID, int typID) {
-		MitarbeiterEquipment tmp = new MitarbeiterEquipment();
+		MitarbeiterEquipment tmp = readMitarbeiterEquipment(id);
 
-		tmp.setId(id);
 		tmp.setAnschaffungsdatum(anschaffungsdatum);
 		tmp.setBezeichnung(bezeichnung);
 		tmp.setHersteller(readHersteller(herstellerID));
@@ -722,7 +718,7 @@ public class DBCRUDManager {
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -741,9 +737,8 @@ public class DBCRUDManager {
 	 * @param arbeitsplaetze Column in Table
 	 */
 	protected void updateRaum(int id, String bezeichnung, int standortID, String stockwerk, int arbeitsplaetze) {
-		Raum tmp = new Raum();
+		Raum tmp = readRaum(id);
 
-		tmp.setId(id);
 		tmp.setBezeichnung(bezeichnung);
 		tmp.setAnzahlArbeitsplaetze(arbeitsplaetze);
 		tmp.setStandort(readStandort(standortID));
@@ -751,7 +746,7 @@ public class DBCRUDManager {
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -771,9 +766,8 @@ public class DBCRUDManager {
 	 * @param landID     ID of existing Land
 	 */
 	protected void updateAdresse(int id, String straße, int hausnummer, String stadt, int plz, String landID) {
-		Adresse tmp = new Adresse();
+		Adresse tmp = readAdresse(id);
 
-		tmp.setId(id);
 		tmp.setHausnummer(hausnummer);
 		tmp.setLand(readLand(landID));
 		tmp.setPlz(plz);
@@ -782,7 +776,7 @@ public class DBCRUDManager {
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -798,14 +792,13 @@ public class DBCRUDManager {
 	 * @param abteilung Column in Table
 	 */
 	protected void updateAbteilung(int id, String abteilung) {
-		Abteilung tmp = new Abteilung();
+		Abteilung tmp = readAbteilung(id);
 
-		tmp.setId(id);
 		tmp.setAbteilung(abteilung);
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -822,15 +815,14 @@ public class DBCRUDManager {
 	 * @param landID new Primary Key of Land to update
 	 */
 	protected void updateLand(String id, String land, String landID) {
-		Land tmp = new Land();
+		Land tmp = readLand(id);
 
-		tmp.setId(id);
 		tmp.setLand(land);
 		tmp.setId(landID);
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -846,14 +838,13 @@ public class DBCRUDManager {
 	 * @param status new name of Status
 	 */
 	protected void updateStatus(int id, String status) {
-		Status tmp = new Status();
+		Status tmp = readStatus(id);
 
-		tmp.setId(id);
 		tmp.setStatus(status);
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -869,14 +860,13 @@ public class DBCRUDManager {
 	 * @param hersteller new name of Hersteller
 	 */
 	protected void updateHersteller(int id, String hersteller) {
-		Hersteller tmp = new Hersteller();
+		Hersteller tmp = readHersteller(id);
 
-		tmp.setId(id);
 		tmp.setHersteller(hersteller);
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
@@ -892,14 +882,13 @@ public class DBCRUDManager {
 	 * @param typ new name of Typ
 	 */
 	protected void updateTyp(int id, String typ) {
-		Typ tmp = new Typ();
+		Typ tmp = readTyp(id);
 
-		tmp.setId(id);
 		tmp.setTyp(typ);
 
 		Transaction t = session.beginTransaction();
 		try {
-			session.save(tmp);
+			session.update(tmp);
 			t.commit();
 		} catch (HibernateException e) {
 			if (t != null)
