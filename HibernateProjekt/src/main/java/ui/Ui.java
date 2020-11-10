@@ -40,6 +40,7 @@ public class Ui {
 		System.out.println(
 				"######################################################################################################");
 		System.out.println("To stop the System type \"exit\" while you are not performing an operation ");
+		System.out.println("To perform the example queries type \"example\" while not performing an operation");
 		System.out.println("Possible Operations: \n" + operations + "\n on following tables:" + tables
 				+ "\nSyntax: <operation> <table>\nfurther instructions will appear during operations.\n\n");
 		try {
@@ -85,6 +86,8 @@ public class Ui {
 			case "delete":
 				delete(db, reader, tmp[1]);
 				break;
+			case "example":
+				exampleQueries(db);
 			default:
 				System.out.println("Unknown operation.\nPossible operations:\n -exit\n" + operations);
 				break;
@@ -109,6 +112,7 @@ public class Ui {
 		int standortID;
 		int typID;
 		String landID;
+		int statusID;
 		switch (type) {
 		case "mitarbeiter":
 			System.out.println("Lastname: ");
@@ -151,7 +155,11 @@ public class Ui {
 			readAll(db, "typ");
 			System.out.println("Typ ID: ");
 			typID = Integer.parseInt(reader.readLine());
-			db.createBueroausstattung(anschaffungsdatum, bezeichnung, herstellerID, raumID, typID);
+			System.out.println("Overview on Status: ");
+			readAll(db, "status");
+			System.out.println("Status ID: ");
+			statusID = Integer.parseInt(reader.readLine());
+			db.createBueroausstattung(anschaffungsdatum, bezeichnung, herstellerID, raumID, typID, statusID);
 			break;
 		case "standort":
 			System.out.println("Overview on Adresse: ");
@@ -673,7 +681,7 @@ public class Ui {
 			showEntities = true;
 
 		String bezeichnung, landID, nachname, vorname, stockwerk, straße, stadt;
-		int adressID, herstellerID, standortID, id, abteilungsID, raumID, mitarbeiterID, arbeitsplaetze, hausnummer, plz, typID;
+		int adressID, herstellerID, standortID, id, abteilungsID, raumID, mitarbeiterID, arbeitsplaetze, hausnummer, plz, typID, statusID;
 		Date anschaffungsdatum, geburtsdatum;
 		char geschlecht;
 		switch (type) {
@@ -777,7 +785,15 @@ public class Ui {
 			} else {
 				typID = ba.getTyp().getId();
 			}
-			db.updateBueroausstattung(id, anschaffungsdatum, bezeichnung, herstellerID, raumID, typID);
+			if (updateColumn(reader, "Status")) {
+				System.out.println("Overview on Status: ");
+				readAll(db, "status");
+				System.out.println("Status ID: ");
+				statusID = Integer.parseInt(reader.readLine());
+			} else {
+				statusID = ba.getStatus().getId();
+			}
+			db.updateBueroausstattung(id, anschaffungsdatum, bezeichnung, herstellerID, raumID, typID, statusID);
 			break;
 		case "standort":
 			if (showEntities)
@@ -1018,6 +1034,103 @@ public class Ui {
 			break;
 		}
 
+	}
+	
+	/**
+	 * Shows the results of 7 example queries
+	 * @param db
+	 */
+	private static void exampleQueries(DBManagement db) {
+		System.out.println("Number of facilities in the USA: " + db.getNumberofStandorteInLand("US"));
+		System.out.println("Number of Arbeitsplaetze in Romania: " + db.getArbeitsplaetzeInLand("RO"));
+		System.out.println("Number of equipment in use: " + db.getNumberOfUsedEquipment());
+		
+		List<String> header = new ArrayList<>();
+		List<String> values = new ArrayList<>();
+		
+		System.out.println("Facilities in Germany:");
+		List<Standort> so = db.getStandortInLand("DE");
+		header.clear();
+		header.add("StandortID");
+		header.add("Postleitzahl");
+		header.add("Stadt");
+		header.add("Straße");
+		header.add("Hausnummer");
+		show(header);
+
+		so.forEach(x -> {
+			values.clear();
+			values.add("" + x.getId());
+			values.add("" + x.getAdresse().getPlz());
+			values.add("" + x.getAdresse().getStadt());
+			values.add("" + x.getAdresse().getStraße());
+			values.add("" + x.getAdresse().getHausnummer());
+
+			show(values);
+		});
+		
+		System.out.println("Male Employees in Germany:");
+		List<Mitarbeiter> ma = db.getMaleMitarbeiterInLand("DE");
+
+		header.clear();
+		header.add("MitarbeiterID");
+		header.add("Nachname");
+		header.add("Vorname");
+		header.add("Geschlecht");
+		header.add("Geburtsdatum");
+		show(header);
+
+		ma.forEach(x -> {
+			values.clear();
+			values.add("" + x.getId());
+			values.add(x.getNachname());
+			values.add(x.getVorname());
+			values.add("" + x.getGeschlecht());
+			values.add(x.getGeburtsdatum().toString());
+
+			show(values);
+		});
+		
+		System.out.println("Mitarbeiter-Equipment used by Sabine Grimm:");
+		List<MitarbeiterEquipment> mae = db.getMitarbeiterEquipmentOfMitarbeiter("Sabine", "Grimm");
+
+		header.clear();
+		header.add("Seriennummer");
+		header.add("Bezeichnung");
+		header.add("Anschaffungsdatum");
+		show(header);
+
+		mae.forEach(x -> {
+			values.clear();
+			values.add("" + x.getId());
+			values.add(x.getBezeichnung());
+			values.add(x.getAnschaffungsdatum().toString());
+
+			show(values);
+		});
+		
+		System.out.println("Mitarbeiter in department development:");
+		ma = db.getMitarbeiterInAbteilung(3);
+
+		header.clear();
+		header.add("MitarbeiterID");
+		header.add("Nachname");
+		header.add("Vorname");
+		header.add("Geschlecht");
+		header.add("Geburtsdatum");
+		show(header);
+
+		ma.forEach(x -> {
+			values.clear();
+			values.add("" + x.getId());
+			values.add(x.getNachname());
+			values.add(x.getVorname());
+			values.add("" + x.getGeschlecht());
+			values.add(x.getGeburtsdatum().toString());
+
+			show(values);
+		});
+		
 	}
 
 	/**

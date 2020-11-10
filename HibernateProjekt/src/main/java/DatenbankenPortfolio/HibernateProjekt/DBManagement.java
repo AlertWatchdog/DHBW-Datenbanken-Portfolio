@@ -6,6 +6,7 @@
 package DatenbankenPortfolio.HibernateProjekt;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -35,6 +36,7 @@ public class DBManagement {
 	private SessionFactory factory;
 	private Session session;
 	private DBCRUDManager crudManager;
+	private ExampleQueryManager exampleManager;
 
 	public DBManagement() {
 		this.ssr = new StandardServiceRegistryBuilder().configure("resources/hibernate.cfg.xml").build();
@@ -45,6 +47,122 @@ public class DBManagement {
 
 		crudManager = new DBCRUDManager(session);
 	}
+	
+	//Example Queries
+	/**
+	 * Returns number of Standort-entities for a certain Land
+	 * @param landID	ID of the Land entity
+	 * @return
+	 */
+	public int getNumberofStandorteInLand(String landID) {
+		List<Standort> standorte = readAllStandort();
+		int result = 0;
+		for(Standort standort : standorte) {
+			if(standort.getAdresse().getLand().getId().contains(landID)) 
+				result++;
+		}
+		return result;
+	}
+	
+	/**
+	 * Returns number of Arbeitsplatz-entities for a certain Land
+	 * @param landID
+	 * @return
+	 */
+	public int getArbeitsplaetzeInLand(String landID) {
+		List<Raum> raeume = readAllRaum();
+		int result = 0;
+		for(Raum raum : raeume) {
+			if(raum.getStandort().getAdresse().getLand().getId().contains(landID))
+				result += raum.getAnzahlArbeitsplaetze();
+		}
+		return result;
+	}
+	
+	/**
+	 * Returns all Standort-entities for a certain Land
+	 * @param landID
+	 * @return
+	 */
+	public List<Standort> getStandortInLand(String landID){
+		List<Standort> standorte = readAllStandort();
+		List<Standort> result = new ArrayList<Standort>();
+		for(Standort standort : standorte) {
+			if(standort.getAdresse().getLand().getId().contains(landID)) 
+				result.add(standort);
+		}
+		return result;
+	}
+	
+	//Ohne Adresse
+	/**
+	 * Returns all Mitarbeiter-entities where sex is male for a certain Land
+	 * @param landID
+	 * @return
+	 */
+	public List<Mitarbeiter> getMaleMitarbeiterInLand(String landID){
+		List<Mitarbeiter> mitarbeiter = readAllMitarbeiter();
+		List<Mitarbeiter> result = new ArrayList<Mitarbeiter>();
+		for(Mitarbeiter ma : mitarbeiter) {
+			if(ma.getAdresse().getLand().getId().contains(landID) && ma.getGeschlecht() == 'm') 
+				result.add(ma);
+		}
+		return result;
+	}
+	
+	/**
+	 * Returns the number of Bueroausstattung-Entities with the Status "im Einsatz"
+	 * @return
+	 */
+	public int getNumberOfUsedEquipment() {
+		List<Bueroausstattung> bueroausstattung = readAllBueroausstattung();
+		int result = 0;
+		for(Bueroausstattung x : bueroausstattung) {
+			if(x.getStatus().getStatus().contains("im Einsatz")) 
+				result++;
+		}
+		return result;
+	}
+	
+	/**
+	 * Returns the entities of MitarbeiterEquipment related to one Mitarbeiter
+	 * @param firstName
+	 * @param lastName
+	 * @return
+	 */
+	public List<MitarbeiterEquipment> getMitarbeiterEquipmentOfMitarbeiter(String firstName, String lastName){
+		List<Mitarbeiter> mitarbeiterL = readAllMitarbeiter();
+		Mitarbeiter mitarbeiter = null;
+		for(Mitarbeiter ma : mitarbeiterL) {
+			if(ma.getVorname().contains(firstName) && ma.getNachname().contains(lastName))
+				mitarbeiter = ma;
+		}
+		List<MitarbeiterEquipment> mitarbeiterequipment = readAllMitarbeiterEquipment();
+		List<MitarbeiterEquipment> result = new ArrayList<MitarbeiterEquipment>();
+		for(MitarbeiterEquipment mae : mitarbeiterequipment) {
+			if(mae.getMitarbeiter() == mitarbeiter) 
+				result.add(mae);
+		}
+		return result;
+	}
+	
+	/**
+	 * Returns the number of Mitarbeiter-entities for one Abteilung
+	 * @param abteilungsID
+	 * @return
+	 */
+	public List<Mitarbeiter> getMitarbeiterInAbteilung(int abteilungsID){
+		List<Mitarbeiter> mitarbeiter = readAllMitarbeiter();
+		List<Mitarbeiter> result = new ArrayList<Mitarbeiter>();
+		for(Mitarbeiter ma : mitarbeiter) {
+			if(ma.getAbteilung().getId() == abteilungsID)
+				result.add(ma);
+		}
+		return result;
+	}
+	
+	
+	
 
 	// CRUD Methods
 	// Create Methods
@@ -75,8 +193,8 @@ public class DBManagement {
 	 * @param typID             ID of existing Typ
 	 */
 	public void createBueroausstattung(Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
-			int typID) {
-		this.crudManager.createBueroausstattung(anschaffungsdatum, bezeichnung, herstellerID, raumID, typID);
+			int typID, int statusID) {
+		this.crudManager.createBueroausstattung(anschaffungsdatum, bezeichnung, herstellerID, raumID, typID, statusID);
 	}
 
 	/**
@@ -416,8 +534,8 @@ public class DBManagement {
 	 * @param typID             ID of existing Typ
 	 */
 	public void updateBueroausstattung(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
-			int typID) {
-		this.crudManager.updateBueroausstattung(id, anschaffungsdatum, bezeichnung, herstellerID, raumID, typID);
+			int typID, int statusID) {
+		this.crudManager.updateBueroausstattung(id, anschaffungsdatum, bezeichnung, herstellerID, raumID, typID, statusID);
 	}
 
 	/**

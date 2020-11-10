@@ -81,7 +81,7 @@ public class DBCRUDManager {
 	 * @param typID             ID of existing Typ
 	 */
 	protected void createBueroausstattung(Date anschaffungsdatum, String bezeichnung, int herstellerID, int raumID,
-			int typID) {
+			int typID, int statusID) {
 		Bueroausstattung tmp = new Bueroausstattung();
 
 		tmp.setAnschaffungsdatum(anschaffungsdatum);
@@ -89,6 +89,7 @@ public class DBCRUDManager {
 		tmp.setHersteller(readHersteller(herstellerID));
 		tmp.setRaum(readRaum(raumID));
 		tmp.setTyp(readTyp(typID));
+		tmp.setStatus(readStatus(statusID));
 
 		Transaction t = session.beginTransaction();
 		try {
@@ -653,7 +654,7 @@ public class DBCRUDManager {
 	 * @param typID             ID of existing Typ
 	 */
 	protected void updateBueroausstattung(int id, Date anschaffungsdatum, String bezeichnung, int herstellerID,
-			int raumID, int typID) {
+			int raumID, int typID, int statusID) {
 		Bueroausstattung tmp = new Bueroausstattung();
 
 		tmp.setId(id);
@@ -662,6 +663,7 @@ public class DBCRUDManager {
 		tmp.setHersteller(readHersteller(herstellerID));
 		tmp.setRaum(readRaum(raumID));
 		tmp.setTyp(readTyp(typID));
+		tmp.setStatus(readStatus(statusID));
 
 		Transaction t = session.beginTransaction();
 		try {

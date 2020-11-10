@@ -68,4 +68,15 @@ public class Bueroausstattung {
 			public void setHersteller(Hersteller hersteller) {
 				Hersteller = hersteller;
 			}
+			
+			@ManyToOne
+			@JoinColumn(name = "StatusID")
+			private Status status;
+
+			public Status getStatus() {
+				return status;
+			}
+			public void setStatus(Status status) {
+				this.status = status;
+			}
 }
