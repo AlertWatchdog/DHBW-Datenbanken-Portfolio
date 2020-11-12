@@ -88,6 +88,7 @@ public class Ui {
 				break;
 			case "example":
 				exampleQueries(db);
+				break;
 			default:
 				System.out.println("Unknown operation.\nPossible operations:\n -exit\n" + operations);
 				break;
